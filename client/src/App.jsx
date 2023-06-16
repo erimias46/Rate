@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Route, BrowserRouter, Routes} from 'react-route
 import Home from './Pages/Home'
 import Header from './Components/Header'
 import Teachers from './Pages/Teachers'
+import Details from './Pages/Details'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/teachers' element={<Teachers />} />
+        <Route path='/teachers/:id' element={<Details />} />
       </Routes>
     </BrowserRouter>
     

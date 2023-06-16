@@ -75,15 +75,6 @@ function Header() {
         </div>
       </div>
 
-      <div className='flex justify-center'>
-        
-        <input
-          type="text"
-          placeholder="Enter Name"
-          className="input input-bordered input-primary w-full max-w-xs"
-        />
-        <button className="btn btn-accent mx-5">Search</button>
-      </div>
     </>
   );
 }
