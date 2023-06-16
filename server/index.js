@@ -17,7 +17,7 @@ const projects = [
   },
   {
     id: 2,
-    Name: "Tamiru ",
+    Name: "Tamiru",
     department: "Software Engineering ",
     imageUrl:
       "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
@@ -61,6 +61,20 @@ app.get('/', async(req, res) => {
         await res.json(projects)
     }
     catch (err) {
+        console.log(err)
+    }
+})
+app.get('/teachers/:name', async (req, res) => { 
+    try {
+      await res.json(projects.find((project) => project.Name === req.params.name))
+    } catch (error) {
+        console.log(err)
+    }
+})
+app.get('/teachers/:id', async (req, res) => { 
+    try {
+      await res.json(projects.find((project) => project.id === parseInt(req.params.id)))
+    } catch (error) {
         console.log(err)
     }
 })
