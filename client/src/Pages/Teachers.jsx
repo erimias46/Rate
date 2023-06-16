@@ -1,57 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import axios from 'axios';
+import { useState } from 'react';
 
 
 function Teachers() {
-    const projects = [
-      {
-        id: 1,
-        Name: "Tesfaye Meshu ",
-        department: "Software Engineering",
-        imageUrl:
-          "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
-        courses: ["Os", " ML"],
-      },
-      {
-        id: 2,
-        Name: "Tamiru ",
-        department: "Software Engineering ",
-        imageUrl:
-          "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
-        courses: ["Embedded", "Comp Arch"],
-      },
-      {
-        id: 3,
-        Name: "Eyob",
-        department: "Software ",
-        imageUrl:
-          "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
-        courses: ["Web Development", "C++"],
-      },
-      {
-        id: 4,
-        Name: "goals",
-        department: " hewhjew",
-        imageUrl:
-          "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
-        courses: ["Web Development", "C++"],
-      },
-      {
-        id: 5,
-        Name: "goals",
-        department: " hewhjew",
-        imageUrl:
-          "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
-        courses: ["Web Development", "C++"],
-      },
-      {
-        id: 6,
-        Name: "goals",
-        department: " hewhjew",
-        imageUrl:
-          "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
-        courses: ["Web Development", "C++"],
-      },
-    ];
+    const [teachers, setTeachers] = useState([])
+
+    const fetchTeachers = async () => { 
+        try {
+            const response = await axios.get('http://localhost:3001/')
+            console.log(response.data)
+            setTeachers(response.data)
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        fetchTeachers()
+    },[])
+    
   return (
     <div>
       <div className="flex justify-center">
@@ -70,7 +39,7 @@ function Teachers() {
           </div>
           <div className="divider"></div>
           <div className="grid grid-cols-1 gap-4 mr-5 md:grid-cols-4">
-            {projects.map((d) => {
+            {teachers.map((d) => {
               return (
                 <div className="card " key={d.id}>
                   <figure>
