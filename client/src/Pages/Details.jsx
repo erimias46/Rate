@@ -73,16 +73,17 @@ function Details() {
               ) : (
                 <>
                   {" "}
-                  <h1>{teachers.Name}</h1>{" "}
+                    <h1>{teachers.Name}</h1>
+                    
                   <p>Average rating: {rating.toFixed(1)}</p>{" "}
                   
                 </>
-              )}{" "}
+              )}
             </div>
           </div>
         </div>
       </div>
-      <Comment />
+      <Comment id={params.id} comments={teachers.comment} />
     </div>
   );
 }

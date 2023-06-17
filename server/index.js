@@ -15,7 +15,7 @@ const projects = [
       "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
     courses: ["Os", " ML"],
     rating: [1, 2, 3, 1, 1, 2, 1, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5],
-    comment:["Abebebe","ayele"]
+    comment: ["Abebebe", "ayele"],
   },
   {
     id: 2,
@@ -25,6 +25,7 @@ const projects = [
       "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
     courses: ["Embedded", "Comp Arch"],
     rating: [3, 4, 5, 1, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 5],
+    comment: ["google", "Apple"],
   },
   {
     id: 3,
@@ -34,6 +35,7 @@ const projects = [
       "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
     courses: ["Web Development", "C++"],
     rating: [3, 4, 5, 1, 3, 1, 2, 1, 1, 2, 1, 4, 5, 3, 4, 5, 3, 4, 5],
+    comment: ["google", "Apple"],
   },
   {
     id: 4,
@@ -43,6 +45,7 @@ const projects = [
       "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
     courses: ["Web Development", "C++"],
     rating: [3, 4, 5, 1, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5],
+    comment: ["google", "Apple"],
   },
   {
     id: 5,
@@ -52,6 +55,7 @@ const projects = [
       "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
     courses: ["Web Development", "C++"],
     rating: [1, 1, 2, 1, 3, 1, 5, 3, 4, 5, 4, 4, 5, 2, 4, 5, 3, 4, 5],
+    comment: ["google", "Apple"],
   },
   {
     id: 6,
@@ -61,6 +65,7 @@ const projects = [
       "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
     courses: ["Web Development", "C++"],
     rating: [3, 4, 5, 1, 3, 2, 5, 3, 4, 5, 2, 4, 5, 3, 1, 5, 3, 2, 5],
+    comment: ["google", "Apple"],
   },
 ];
 app.get('/', async(req, res) => { 
