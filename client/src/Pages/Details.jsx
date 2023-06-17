@@ -14,7 +14,8 @@ function Details() {
       const response = await axios.get(`http://localhost:3001/teachers/${params.id}`);
       console.log(response.data);
       setTeachers(response.data);
-      setLoading(false); const ratings = response.data.rating || []; // handle cases where there are no ratings     
+      setLoading(false);
+      const ratings = response.data.rating || []; // handle cases where there are no ratings     
       const sum = ratings.reduce((acc, rating) => acc + rating, 0);
       setRating(sum / ratings.length);
       
@@ -72,10 +73,12 @@ function Details() {
                 <p>Loading...</p>
               ) : (
                 <>
-                  {" "}
+                  
                     <h1>{teachers.Name}</h1>
                     
-                  <p>Average rating: {rating.toFixed(1)}</p>{" "}
+                    <p>Average rating: {rating.toFixed(0)}   </p>
+                    
+                    
                   
                 </>
               )}
