@@ -14,6 +14,8 @@ const projects = [
     imageUrl:
       "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
     courses: ["Os", " ML"],
+    rating: [1, 2, 3, 1, 1, 2, 1, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5],
+    comment:["Abebebe","ayele"]
   },
   {
     id: 2,
@@ -22,6 +24,7 @@ const projects = [
     imageUrl:
       "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
     courses: ["Embedded", "Comp Arch"],
+    rating: [3, 4, 5, 1, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 5],
   },
   {
     id: 3,
@@ -30,6 +33,7 @@ const projects = [
     imageUrl:
       "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
     courses: ["Web Development", "C++"],
+    rating: [3, 4, 5, 1, 3, 1, 2, 1, 1, 2, 1, 4, 5, 3, 4, 5, 3, 4, 5],
   },
   {
     id: 4,
@@ -38,6 +42,7 @@ const projects = [
     imageUrl:
       "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
     courses: ["Web Development", "C++"],
+    rating: [3, 4, 5, 1, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5, 3, 4, 5],
   },
   {
     id: 5,
@@ -46,6 +51,7 @@ const projects = [
     imageUrl:
       "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
     courses: ["Web Development", "C++"],
+    rating: [1, 1, 2, 1, 3, 1, 5, 3, 4, 5, 4, 4, 5, 2, 4, 5, 3, 4, 5],
   },
   {
     id: 6,
@@ -54,6 +60,7 @@ const projects = [
     imageUrl:
       "https://louisville.edu/enrollmentmanagement/images/person-icon/image",
     courses: ["Web Development", "C++"],
+    rating: [3, 4, 5, 1, 3, 2, 5, 3, 4, 5, 2, 4, 5, 3, 1, 5, 3, 2, 5],
   },
 ];
 app.get('/', async(req, res) => { 
@@ -64,20 +71,32 @@ app.get('/', async(req, res) => {
         console.log(err)
     }
 })
-app.get('/teachers/:name', async (req, res) => { 
+// app.get('/teachers/:name', async (req, res) => { 
+//     try {
+//       await res.json(projects.find((project) => project.Name === req.params.name))
+//     } catch (error) {
+//         console.log(err)
+//     }
+// })
+app.get('/teachers/:id',  (req, res) => { 
     try {
-      await res.json(projects.find((project) => project.Name === req.params.name))
+       res.json(projects.find((project) => project.id === parseInt(req.params.id)))
     } catch (error) {
         console.log(err)
     }
 })
-app.get('/teachers/:id', async (req, res) => { 
-    try {
-      await res.json(projects.find((project) => project.id === parseInt(req.params.id)))
-    } catch (error) {
-        console.log(err)
-    }
-})
+
+app.post("/teachers/:id", (req, res) => {
+  try {
+    const newinfo = req.body.comment
+    projects.comment.push(newinfo)
+    console.log(projects.comment)
+    res.json(projects.find((project) => project.id === parseInt(req.params.id))
+    );
+  } catch (error) {
+    console.log(err);
+  }
+});
 app.listen(3001, (req, res) => {
     console.log("connected at 3001")
 })

@@ -1,9 +1,15 @@
 import React, { useEffect } from 'react'
 import axios from 'axios';
 import { useState } from 'react';
-
+import{Link,useNavigate} from 'react-router-dom'
 
 function Teachers() {
+
+  const navigate = useNavigate()
+  const openDetails = (id) => {
+    navigate(`/teachers/${id}`)
+    
+  }
     const [teachers, setTeachers] = useState([])
 
     const fetchTeachers = async () => { 
@@ -43,7 +49,7 @@ function Teachers() {
               return (
                 <div className="card " key={d.id}>
                   <figure>
-                    <img src={d.imageUrl} alt="Shoes" />
+                    <img src={d?.imageUrl} alt="Shoes" />
                   </figure>
                   <div className="card-body">
                     <h2 className="card-title">{d.Name}</h2>
@@ -86,7 +92,9 @@ function Teachers() {
                         />
                       </div>
                     </div>
-                    <button className="btn  bg-gray-950  hover:bg-gray-300">
+                    <button className="btn  bg-gray-950  hover:bg-gray-300" onClick={() => {
+                      openDetails(d.id)
+                    }}>
                       Descirption
                     </button>
                   </div>
