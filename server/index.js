@@ -88,15 +88,15 @@ app.get('/teachers/:id',  (req, res) => {
 
 app.post("/teachers/:id", (req, res) => {
   try {
-    const newinfo = req.body.comment
-    projects.comment.push(newinfo)
-    console.log(projects.comment)
-    res.json(projects.find((project) => project.id === parseInt(req.params.id))
-    );
-  } catch (error) {
-    console.log(err);
-  }
+    const newinfo = req.body.comment;
+    const foundProject = projects.find((project) => project.id === parseInt(req.params.id));
+    if (foundProject) {
+      foundProject.comment.push(newinfo); console.log(foundProject.comment);
+      res.json(foundProject);
+    } else { res.status(404).json({ message: "Project not found" }); }
+  } catch (error) { console.log(error); }
 });
+
 app.listen(3001, (req, res) => {
     console.log("connected at 3001")
 })
