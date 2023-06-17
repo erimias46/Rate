@@ -7,7 +7,6 @@ function Comment({ id,comments }) {
 
     const postComments = async () => {
         
-        
         try {
               axios.post(`http://localhost:3001/teachers/${id}'`, {
                 comment
@@ -19,11 +18,14 @@ function Comment({ id,comments }) {
             console.log(err)
         }
     }
+
+    
+    
   
   return (
     <div>
-      <div className="w-full bg-slate-900 rounded-lg border p-2 ">
-        <h3 className="font-bold">Discussion</h3>
+      <div className="w-full bg-gray-900 rounded-lg border p-2 ">
+        <h3 className="font-bold">Comments about the teacher</h3>
 
           <div className="flex flex-col">
             
@@ -43,7 +45,7 @@ function Comment({ id,comments }) {
                               <h3 className="font-bold">Anonymous</h3>
                             </div>
 
-                                  <p className="text-gray-600 mt-2">{m}</p>
+                                  <p className="text-gray-100 mt-2">{m}</p>
                           </div>
                         </p>
                       );

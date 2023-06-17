@@ -17,10 +17,10 @@ function Details() {
       setLoading(false); const ratings = response.data.rating || []; // handle cases where there are no ratings     
       const sum = ratings.reduce((acc, rating) => acc + rating, 0);
       setRating(sum / ratings.length);
-      console.log(rating)
+      
     } catch (err) { console.log(err); }
   };
-  useEffect(() => { fetchTeachers(); }, [setLoading]);
+  useEffect(() => { fetchTeachers(); }, [setLoading,teachers]);
      
 
   return (
