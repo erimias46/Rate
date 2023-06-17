@@ -72,7 +72,7 @@ function Comment({ id,comments }) {
               
             >Post Comment</button>
                   </div>
-                  {comment}{id} 
+                  
         
       </div>
     </div>
