@@ -1,6 +1,19 @@
 const express = require('express')
 const app = express()
-const cors=require('cors')
+const cors = require('cors')
+var mysql = require("mysql");
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database:'rate'
+});
+
+con.connect(function (err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
 
 
 app.use(cors())
@@ -70,7 +83,12 @@ const projects = [
 ];
 app.get('/', async(req, res) => { 
     try {
-        await res.json(projects)
+      //await res.json(projects)
+      var sql = `Select *From teachersinfo`;
+      con.query (sql, async function  (err, result) {
+        if (err) throw err;
+        await res.json(result);
+      });
     }
     catch (err) {
         console.log(err)
@@ -89,6 +107,24 @@ app.get('/teachers/:id',  (req, res) => {
     } catch (error) {
         console.log(err)
     }
+})
+app.post('/create/teachers', (req, res) => { 
+  const name = req.body.Name;
+  const department = req.body.department;
+  const course = req.body.course;
+  try {
+    var sql =
+      `INSERT INTO teachersinfo (name, department, course) VALUES ('${name}', '${department}','["morning", "noon", "night"]');`;
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("1 record inserted");
+    });
+  
+
+  }
+  catch(err){
+    console.log(err)
+  }
 })
 
 app.post("/teachers/:id", (req, res) => {

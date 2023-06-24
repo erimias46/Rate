@@ -49,10 +49,13 @@ function Teachers() {
               return (
                 <div className="card " key={d.id}>
                   <figure>
-                    <img src={d?.imageUrl} alt="Shoes" />
+                    <img
+                      src="https://louisville.edu/enrollmentmanagement/images/person-icon/image"
+                      alt="Shoes"
+                    />
                   </figure>
                   <div className="card-body">
-                    <h2 className="card-title">{d.Name}</h2>
+                    <h2 className="card-title">{d.name}</h2>
                     <p>{d.department}</p>
                     <div className="card-actions justify-end">
                       <div className="badge badge-outline">
@@ -62,12 +65,13 @@ function Teachers() {
                         {d.courses?.[1]}
                       </div>
                     </div>
-                    <div>
-                      
-                    </div>
-                    <button className="btn  bg-gray-950  hover:bg-gray-300" onClick={() => {
-                      openDetails(d.id)
-                    }}>
+                    <div></div>
+                    <button
+                      className="btn  bg-gray-950  hover:bg-gray-300"
+                      onClick={() => {
+                        openDetails(d.id);
+                      }}
+                    >
                       Descirption
                     </button>
                   </div>

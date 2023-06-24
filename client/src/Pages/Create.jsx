@@ -1,11 +1,25 @@
 import React from 'react'
 import { useState } from 'react'
+import axios from 'axios'
 
 function Create() {
-  const [name, setName] = useState('')
+  const [Name, setName] = useState('')
   const [department, setDepartment] = useState('')
   const [courses, setCourses] = useState('')
-  const [rating, setRating] = useState('')
+  
+
+  const createTeacher = async () => {
+    try {
+      
+      await axios.post("http://localhost:3001/create/teachers", { Name, department, courses });
+      alert("Teacher Added")
+      
+    } catch (error) {
+      console.log(error.message)
+    }
+    
+  }
+
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
@@ -54,7 +68,9 @@ function Create() {
                 </select>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-accent">Create</button>
+                <button className="btn btn-accent" onClick={() => {
+                  createTeacher()
+                }}>Create</button>
               </div>
             </div>
           </div>
