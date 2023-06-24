@@ -7,6 +7,7 @@ import Home from './Pages/Home'
 import Header from './Components/Header'
 import Teachers from './Pages/Teachers'
 import Details from './Pages/Details'
+import Create from './Pages/Create'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/teachers' element={<Teachers />} />
+        <Route path='/create' element={<Create />} />
         <Route path='/teachers/:id' element={<Details />} />
       </Routes>
     </BrowserRouter>

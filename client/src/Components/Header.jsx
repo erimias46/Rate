@@ -30,7 +30,7 @@ function Header() {
                 <a>Item 1</a>
               </li>
               <li>
-                <a>Parent</a>
+                <Link to='/create'>Create</Link>
                 <ul className="p-2">
                   <li>
                     <a>Submenu 1</a>
@@ -41,7 +41,7 @@ function Header() {
                 </ul>
               </li>
               <li>
-                <a>Item 3</a>
+                <Link to ='/create'>Create</Link>
               </li>
             </ul>
           </div>

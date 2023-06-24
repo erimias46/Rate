@@ -63,34 +63,7 @@ function Teachers() {
                       </div>
                     </div>
                     <div>
-                      <div className="rating">
-                        <input
-                          type="radio"
-                          name="rating-2"
-                          className="mask mask-star-2 bg-orange-400"
-                        />
-                        <input
-                          type="radio"
-                          name="rating-2"
-                          className="mask mask-star-2 bg-orange-400"
-                          checked
-                        />
-                        <input
-                          type="radio"
-                          name="rating-2"
-                          className="mask mask-star-2 bg-orange-400"
-                        />
-                        <input
-                          type="radio"
-                          name="rating-2"
-                          className="mask mask-star-2 bg-orange-400"
-                        />
-                        <input
-                          type="radio"
-                          name="rating-2"
-                          className="mask mask-star-2 bg-orange-400"
-                        />
-                      </div>
+                      
                     </div>
                     <button className="btn  bg-gray-950  hover:bg-gray-300" onClick={() => {
                       openDetails(d.id)
