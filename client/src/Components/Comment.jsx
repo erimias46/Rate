@@ -1,9 +1,26 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
 
-function Comment({ id,comments }) {
-    const [comment, setComment] = useState()
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+
+function Comment({ id}) {
+  const [comment, setComment] = useState()
+  const [comments, setComments] = useState();
+  
     
+
+  
+  const fetchComment = async() => {
+    try {
+      const response = await axios.get(`http://localhost:3001/teachers/comment/${id}`);
+      setComments(response.data)
+      console.log(response.data)
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
+
+  
 
     const postComments = async () => {
         
@@ -11,7 +28,7 @@ function Comment({ id,comments }) {
               axios.post(`http://localhost:3001/teachers/${id}'`, {
                 comment
               }).then((response) => {
-        console.log(response);
+        console.log(response.data);
          });;
         }
         catch (err) {
@@ -19,6 +36,9 @@ function Comment({ id,comments }) {
         }
     }
 
+  useEffect(() => {
+    fetchComment();
+  }, []);
     
     
   
@@ -31,9 +51,9 @@ function Comment({ id,comments }) {
             
                   {comments?.map((m) => {
                       return (
-                        <p>
-                          {" "}
-                          <div className="border rounded-md p-3 ml-3 my-3">
+                        
+                          
+                          <div className="border rounded-md p-3 ml-3 my-3" key={m.userID}>
                             <div className="flex gap-3 items-center">
                               <img
                                 src="https://avatars.githubusercontent.com/u/22263436?v=4"
@@ -45,9 +65,9 @@ function Comment({ id,comments }) {
                               <h3 className="font-bold">Anonymous</h3>
                             </div>
 
-                                  <p className="text-gray-100 mt-2">{m}</p>
+                                  <p className="text-gray-100 mt-2">{m.comment}</p>
                           </div>
-                        </p>
+                        
                       );
                     })}
            

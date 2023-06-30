@@ -94,6 +94,16 @@ app.get('/', async(req, res) => {
         console.log(err)
     }
 })
+
+app.post('/auth', (req, res) => {
+
+  try {
+    var sql=''
+  } catch (error) {
+    
+  }
+  
+})
 // app.get('/teachers/:name', async (req, res) => { 
 //     try {
 //       await res.json(projects.find((project) => project.Name === req.params.name))
@@ -101,12 +111,19 @@ app.get('/', async(req, res) => {
 //         console.log(err)
 //     }
 // })
-app.get('/teachers/:id',  (req, res) => { 
-    try {
-       res.json(projects.find((project) => project.id === parseInt(req.params.id)))
-    } catch (error) {
-        console.log(err)
-    }
+app.get('/teachers/:id', (req, res) => { 
+  //parseInt(req.params.id);
+  try {
+    //await res.json(projects)
+    var sql = `Select *From teachersinfo where id=${parseInt(req.params.id)}`;
+    con.query(sql, async function (err, result) {
+      if (err) throw err;
+      await res.json(result);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+    
 })
 app.post('/create/teachers', (req, res) => { 
   const name = req.body.Name;
@@ -130,13 +147,54 @@ app.post('/create/teachers', (req, res) => {
 app.post("/teachers/:id", (req, res) => {
   try {
     const newinfo = req.body.comment;
-    const foundProject = projects.find((project) => project.id === parseInt(req.params.id));
-    if (foundProject) {
-      foundProject.comment.push(newinfo); console.log(foundProject.comment);
-      res.json(foundProject);
-    } else { res.status(404).json({ message: "Project not found" }); }
-  } catch (error) { console.log(error); }
+    const id = parseInt(req.params.id);
+    var sql =
+      `INSERT INTO comments (id, comment) VALUES ('${id}','${newinfo}');`;
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("1 record inserted");
+    });
+  var sql2 = `Select *From comments where id=${parseInt(req.params.id)}`;
+  con.query(sql2, async function (err, result) {
+    if (err) throw err;
+    await res.json(result);
+  });
+
+  }
+  catch(err){
+    console.log(err)
+  }
+    
 });
+
+app.get("/teachers/comment/:id", async(req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    var sql = `Select *From comments where id=${parseInt(req.params.id)}`;
+    con.query(sql, async function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+app.get("/teachers/search/:name", async (req, res) => {
+  console.log(req.params.name)
+  try {
+
+    
+    var sql = `Select *From teachersinfo where name LIKE '%${req.params.name}%'`;
+    con.query(sql, async function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+
 
 app.listen(3001, (req, res) => {
     console.log("connected at 3001")

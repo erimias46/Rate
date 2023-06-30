@@ -45,33 +45,25 @@ function Header() {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">Rate AASTU</a>
+          <Link to={'/'} className="btn btn-ghost normal-case text-xl">Rate AASTU</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
               <Link to="/teachers">Teachers</Link>
             </li>
-            <li tabIndex={0}>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
+            <li>
+              
+                <Link to='/create'>Create</Link>
+                
             </li>
             <li>
-              <a>Item 3</a>
+              <a>Lounges</a>
             </li>
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Login</a>
+          <Link to ='/auth'className="btn">Login</Link>
         </div>
       </div>
 

@@ -9,19 +9,21 @@ function Details() {
   const [teachers, setTeachers] = useState([]);
   const [loading, setLoading] = useState(true)
   const [rating, setRating] = useState(0);
+  
   const fetchTeachers = async () => {
     try {
       const response = await axios.get(`http://localhost:3001/teachers/${params.id}`);
-      console.log(response.data);
-      setTeachers(response.data);
+    
+      setTeachers(response.data[0]);
       setLoading(false);
       const ratings = response.data.rating || []; // handle cases where there are no ratings     
       const sum = ratings.reduce((acc, rating) => acc + rating, 0);
       setRating(sum / ratings.length);
+
       
     } catch (err) { console.log(err); }
   };
-  useEffect(() => { fetchTeachers(); }, [setLoading,teachers]);
+  useEffect(() => { fetchTeachers(); }, []);
      
 
   return (
@@ -29,16 +31,16 @@ function Details() {
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row">
           <img
-            src={teachers.imageUrl}
+            src="Images/Teacher.jpg" alt='Teacher Image'
             className="max-w-sm rounded-lg shadow-2xl"
           />
           <div>
-            <h1 className="text-5xl font-bold">Name: {teachers.Name}</h1>
+            <h1 className="text-5xl font-bold">Name: {teachers.name}</h1>
             <p className="py-6">
-              Depratment :{" "}
-              <span className="text-2xl">{teachers.department}</span>
+              Depratment :
+              <span className="text-xl">{teachers.department}</span>
             </p>
-            
+
             <button className="btn btn-primary">Rate</button>
 
             <div>
@@ -46,20 +48,16 @@ function Details() {
                 <p>Loading...</p>
               ) : (
                 <>
-                  
-                    <h1>{teachers.Name}</h1>
-                    
-                    <p>Average rating: {rating.toFixed(0)}   </p>
-                    
-                    
-                  
+                  <h1>{teachers.Name}</h1>
+
+                  <p>Average rating: {rating.toFixed(0)} </p>
                 </>
               )}
             </div>
           </div>
         </div>
       </div>
-      <Comment id={params.id} comments={teachers.comment} />
+      <Comment id={params.id} />
     </div>
   );
 }

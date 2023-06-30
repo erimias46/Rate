@@ -8,6 +8,7 @@ import Header from './Components/Header'
 import Teachers from './Pages/Teachers'
 import Details from './Pages/Details'
 import Create from './Pages/Create'
+import Auth from './Pages/Auth'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='/teachers' element={<Teachers />} />
         <Route path='/create' element={<Create />} />
         <Route path='/teachers/:id' element={<Details />} />
+        <Route path='/auth' element={<Auth/>} />
       </Routes>
     </BrowserRouter>
     
